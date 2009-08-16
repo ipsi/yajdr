@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import yajdr.gui.D20Gui;
 
-
 /**
  * This rolls the dice for the d20 part of the program.
  * <p>

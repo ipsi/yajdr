@@ -1,6 +1,7 @@
 package yajdr.threads;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import yajdr.dice.DiceRollInformation;
 import yajdr.gui.WorldOfDarknessThreadInformation;
@@ -8,10 +9,9 @@ import yajdr.interfaces.DiceRollerListener;
 import yajdr.interfaces.ThreadProgressListener;
 import yajdr.util.StringUtil;
 
-
 public class RollDice extends Thread implements DiceRollerListener
 {
-	private static Logger												logger					= Logger.getLogger(RollDice.class);
+	private static final Log											log						= LogFactory.getLog(RollDice.class);
 
 	private ThreadProgressListener<WorldOfDarknessThreadInformation>	listener;
 	private DiceRollInformation											info					= null;
@@ -34,7 +34,7 @@ public class RollDice extends Thread implements DiceRollerListener
 	@Override
 	public void run()
 	{
-		logger.debug("Setting up dice to roll");
+		log.debug("Setting up dice to roll");
 		int diceToRoll = info.getDiceToRoll();
 
 		DiceRolling[] dArray = null;
@@ -54,7 +54,7 @@ public class RollDice extends Thread implements DiceRollerListener
 
 		listener.threadStarted(null);
 		totalThreadCount = dArray.length;
-		
+
 		long startTime = System.currentTimeMillis();
 
 		for (int i = 0; i < dArray.length; i++)
@@ -73,14 +73,14 @@ public class RollDice extends Thread implements DiceRollerListener
 		{
 			try
 			{
-				synchronized(this)
+				synchronized (this)
 				{
 					this.wait(100);
 				}
 			}
 			catch (InterruptedException e)
 			{
-				logger.debug("Interrupted thread waiting for results...", e);
+				log.debug("Interrupted thread waiting for results...", e);
 			}
 
 			WorldOfDarknessThreadInformation threadInfo = new WorldOfDarknessThreadInformation();
@@ -94,11 +94,11 @@ public class RollDice extends Thread implements DiceRollerListener
 			listener.threadProgress(threadInfo);
 		}
 		while (completedThreadCount < totalThreadCount);
-		
+
 		long endTime = System.currentTimeMillis();
-		
-		logger.trace("Rollling [" + info.getDiceToRoll() + "] dice, with [" + info.getNewThreadSize() + "] dice per thread took [" + StringUtil.formatDuration(endTime - startTime) + "].");
-		
+
+		log.trace("Rollling [" + info.getDiceToRoll() + "] dice, with [" + info.getNewThreadSize() + "] dice per thread took [" + StringUtil.formatDuration(endTime - startTime) + "].");
+
 		WorldOfDarknessThreadInformation threadInfo = new WorldOfDarknessThreadInformation();
 
 		threadInfo.setBotchCount(botchCount);
@@ -126,7 +126,7 @@ public class RollDice extends Thread implements DiceRollerListener
 
 	public void rollStarted()
 	{
-//		if(logger.isDebugEnabled())
-//			logger.debug("Thread [" + Thread.currentThread().getName() + "] started executing...");
+		// if(log.isDebugEnabled())
+		// log.debug("Thread [" + Thread.currentThread().getName() + "] started executing...");
 	}
 }

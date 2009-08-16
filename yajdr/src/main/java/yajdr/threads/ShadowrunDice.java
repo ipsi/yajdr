@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import yajdr.gui.ShadowrunGui;
 
-
 /**
  * <p>
  * Title:

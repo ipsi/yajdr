@@ -9,8 +9,10 @@ import org.apache.log4j.Logger;
 
 public final class ResourceUtil
 {
-	private static final Logger logger = Logger.getLogger(ResourceUtil.class);
-	
+	private static final Logger	logger	= Logger.getLogger(ResourceUtil.class);
+
+
+
 	public static String loadResourceAsString(String resourceName)
 	{
 		return ResourceUtil.loadResourceAsString(resourceName, Thread.currentThread().getContextClassLoader());
@@ -21,13 +23,13 @@ public final class ResourceUtil
 	public static String loadResourceAsString(String resourceName, ClassLoader cl)
 	{
 		InputStream is = cl.getResourceAsStream(resourceName);
-		
-		if(is == null)
+
+		if (is == null)
 		{
 			logger.error("Can't find file [" + resourceName + "]!");
 			return null;
 		}
-		
+
 		BufferedReader bir = new BufferedReader(new InputStreamReader(is));
 
 		try
@@ -35,10 +37,10 @@ public final class ResourceUtil
 			char[] in = new char[8192];
 			int count = bir.read(in);
 			StringBuffer buffer = new StringBuffer();
-			while(count > 0)
+			while (count > 0)
 			{
 				char[] tmp = null;
-				if(count < in.length)
+				if (count < in.length)
 				{
 					tmp = new char[count];
 					System.arraycopy(in, 0, tmp, 0, count);
@@ -47,7 +49,7 @@ public final class ResourceUtil
 				tmp = null;
 				count = bir.read(in);
 			}
-			
+
 			return buffer.toString();
 		}
 		catch (IOException e)

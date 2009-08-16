@@ -23,7 +23,6 @@ import javax.swing.JToolBar;
 import yajdr.core.DieRollerMain;
 import yajdr.gui.CharmGUI;
 
-
 /**
  * This class deals with searching the database, and putting those results into the table in the
  * main application. Seperate each item you want to search for with ',' or ' ' (Without the quotes).

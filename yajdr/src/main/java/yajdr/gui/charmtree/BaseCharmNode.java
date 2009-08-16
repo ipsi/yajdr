@@ -126,7 +126,7 @@ public class BaseCharmNode
 				baseCharms.put(c.getName(), c);
 				continue;
 			}
-			
+
 			st = new StringTokenizer(pr, ";");
 
 			while (st.hasMoreElements())

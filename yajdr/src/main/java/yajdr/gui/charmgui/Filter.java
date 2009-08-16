@@ -22,7 +22,6 @@ import javax.swing.WindowConstants;
 import yajdr.core.DieRollerMain;
 import yajdr.gui.CharmGUI;
 
-
 /**
  * This creates the filter window. It's currently quite ineffecient, and will be redone when I have
  * time, and probably after some new things are implemented. It also has the problem of not

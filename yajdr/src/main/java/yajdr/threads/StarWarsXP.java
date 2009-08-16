@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import yajdr.gui.StarWarsXpGui;
 
-
 public class StarWarsXP extends Thread
 {
 	private int[][]			xpTable	= new int[9][20];

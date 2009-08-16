@@ -1,1 +1,2 @@
-java -jar ${project.build.finalName}.jar
+#!/bin/bash
+java -jar @project.build.finalName@.jar

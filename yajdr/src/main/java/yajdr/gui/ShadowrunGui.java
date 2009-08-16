@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 import yajdr.interfaces.ThreadProgress;
 import yajdr.threads.ShadowrunDice;
 
-
 /**
  * This constructs and controls all elements present in the Shadow Run tab of the main GUI.
  * <p>

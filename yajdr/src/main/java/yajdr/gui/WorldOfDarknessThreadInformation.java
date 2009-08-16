@@ -4,14 +4,14 @@ import yajdr.dice.DiceRollInformation;
 
 public class WorldOfDarknessThreadInformation
 {
-	private int		successCount			= -1;
-	private int		botchCount				= -1;
-	private String	result					= null;
+	private int					successCount			= -1;
+	private int					botchCount				= -1;
+	private String				result					= null;
 
-	private int		totalThreadCount		= -1;
-	private int		completedThreadCount	= -1;
-	
-	private DiceRollInformation diceRollInformation = null;
+	private int					totalThreadCount		= -1;
+	private int					completedThreadCount	= -1;
+
+	private DiceRollInformation	diceRollInformation		= null;
 
 
 
@@ -121,7 +121,8 @@ public class WorldOfDarknessThreadInformation
 
 
 	/**
-	 * @param diceRollInformation the diceRollInformation to set
+	 * @param diceRollInformation
+	 *            the diceRollInformation to set
 	 */
 	public void setDiceRollInformation(DiceRollInformation diceRollInformation)
 	{

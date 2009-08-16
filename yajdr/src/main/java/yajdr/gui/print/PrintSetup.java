@@ -18,7 +18,6 @@ import javax.swing.JTextField;
 
 import yajdr.core.DieRollerMain;
 
-
 public class PrintSetup extends JFrame implements ActionListener, KeyListener
 {
 

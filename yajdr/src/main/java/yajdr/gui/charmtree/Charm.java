@@ -16,7 +16,6 @@ import javax.swing.JTable;
 
 import yajdr.gui.charmgui.CharmView;
 
-
 public class Charm
 {
 

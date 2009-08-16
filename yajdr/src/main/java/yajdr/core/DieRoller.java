@@ -19,7 +19,8 @@ import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import yajdr.gui.CharmGUI;
 import yajdr.gui.D20Gui;
@@ -29,7 +30,6 @@ import yajdr.gui.ShadowrunGui;
 import yajdr.gui.StarWarsXpGui;
 import yajdr.gui.WorldOfDarknessGui;
 import yajdr.interfaces.ThreadProgress;
-
 
 /**
  * Title: Dice Roller Application Description: As the previous Die Roller, but this now has a GUI,
@@ -57,8 +57,8 @@ public class DieRoller extends JFrame implements ActionListener, ChangeListener,
 {
 
 	private static final long	serialVersionUID	= 1640152470711610549L;
-	
-	private static Logger logger = Logger.getLogger(DieRoller.class);
+
+	private static final Log	log					= LogFactory.getLog(DieRoller.class);
 
 	// Data Fields
 	private JTabbedPane			gameLine			= new JTabbedPane();
@@ -102,7 +102,7 @@ public class DieRoller extends JFrame implements ActionListener, ChangeListener,
 	 */
 	public DieRoller(ThreadProgress loadingScreen)
 	{
-		logger.trace("Loading base die roller...");
+		log.trace("Loading base die roller...");
 		int numberPanels = 13;
 		int panelsDone = 0;
 		getContentPane().setLayout(new BorderLayout());

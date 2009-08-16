@@ -11,29 +11,30 @@ import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.swing.JTable;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class PrintCharm
 {
-	private static Logger logger = Logger.getLogger(PrintCharm.class);
-	
-	private int				pages;
+	private static final Log	log				= LogFactory.getLog(PrintCharm.class);
 
-	private int				charmsPerPage	= 8;
+	private int					pages;
 
-	private int				charmsPerRow	= 4;
+	private int					charmsPerPage	= 8;
 
-	private int				charmsPerColumn	= 2;
+	private int					charmsPerRow	= 4;
 
-	private int				fontSize		= 8;
+	private int					charmsPerColumn	= 2;
 
-	private String			fontLocation	= "C:\\WINDOWS\\Fonts";
+	private int					fontSize		= 8;
 
-	private PageFormat		pageFormat;
+	private String				fontLocation	= "C:\\WINDOWS\\Fonts";
 
-	private JTable			table;
+	private PageFormat			pageFormat;
 
-	private static double	CM_TO_INCH		= 0.393700787;
+	private JTable				table;
+
+	private static double		CM_TO_INCH		= 0.393700787;
 
 
 
@@ -48,28 +49,28 @@ public class PrintCharm
 	public void print()
 	{
 		PrintService[] availableServices = PrinterJob.lookupPrintServices();
-		
-		if(availableServices.length == 0)
+
+		if (availableServices.length == 0)
 		{
-			logger.warn("No Printers could be found!");
+			log.warn("No Printers could be found!");
 			return;
 		}
-		
-		if(logger.isTraceEnabled())
+
+		if (log.isTraceEnabled())
 		{
-			for(PrintService p : availableServices)
-				logger.trace("Found PrintService [" + p.getName() + "]");
+			for (PrintService p : availableServices)
+				log.trace("Found PrintService [" + p.getName() + "]");
 		}
-		
+
 		PrinterJob printjob = PrinterJob.getPrinterJob();
-		
+
 		try
 		{
 			printjob.setPrintService(availableServices[0]);
 		}
 		catch (PrinterException e)
 		{
-			logger.warn("Couldn't set the print service!", e);
+			log.warn("Couldn't set the print service!", e);
 			return;
 		}
 		printjob.setJobName("Charm Cards");

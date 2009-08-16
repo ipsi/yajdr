@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 
 import yajdr.gui.D20XpGui;
 
-
 /**
  * This is a complex class, not in terms of what it does, but in terms of how it does it. This
  * program is designed to return the amount of experience someone recieves. For levels and CR < 20,
@@ -195,7 +194,7 @@ public class D20XP extends Thread implements Serializable
 			{
 				return 2 * epic(level, CR - 2);
 			}
-			
+
 			level += 1;
 			CR += 1;
 			double z = 300 * level;

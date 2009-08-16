@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="yajdr" default="all">
+
+	<property name="build.ivy.retrieve.pattern" value="${build.lib}/[conf]/[artifact].[ext]" />
+	
+	<property name="main.class" value="yajdr.core.DieRollerMain" />
+
+	<property name="build.dir" value="${basedir}/build/" />
+	<property name="build.main" value="${build.dir}main/" />
+	<property name="build.main.java" value="${build.main}java/" />
+	<property name="build.test" value="${build.dir}test/" />
+	<property name="build.test.java" value="${build.test}java/" />
+	<property name="build.lib" value="${build.dir}lib/" />
+	<property name="build.main.resources.prefix" value="META-INF/resources" />
+	<property name="debug" value="true" />
+	<property name="debugLevel" value="lines,vars,source" />
+	<property name="failOnError" value="true" />
+
+	<property name="src.dir" value="${basedir}/src/" />
+	<property name="src.main" value="${src.dir}main/" />
+	<property name="src.main.java" value="${src.main}java/" />
+	<property name="src.main.resources" value="${src.main}resources/" />
+	<property name="src.test" value="${src.dir}test/" />
+	<property name="src.test.java" value="${src.test}java/" />
+	<property name="src.test.resources" value="${src.test}resources/" />
+	<property name="src.externalResources" value="${basedir}/externalResources" />
+
+	<target name="all" depends="clean, dist" />
+
+	<target name="clean">
+		<delete includeemptydirs="true" dir="${build.dir}" />
+	</target>
+
+	<target name="init">
+		<mkdir dir="${build.main.java}" />
+	</target>
+
+	<target name="resolve">
+		<ivy:resolve conf="compile" />
+		<ivy:cachepath pathid="compilePath" />
+
+	</target>
+
+	<target name="compile" depends="init, resolve">
+		<javac classpathref="compilePath" debug="${debug}" debuglevel="${debugLevel}" failonerror="${failOnError}" srcdir="${src.main.java}" destdir="${build.main.java}" />
+	</target>
+
+	<macrodef name="buildJarAndZip">
+		<attribute name="conf" default="*" description="Configuration for this artifact" />
+		<attribute name="suffix" description="Suffix for built JAR and ZIP artifacts" />
+		<attribute name="script" description="Script to be used to run this artifact" />
+		<sequential>
+			<ivy:retrieve pattern="${build.lib}/[artifact].[ext]" sync="true" conf="compile" />
+			<ivy:retrieve pattern="${build.ivy.retrieve.pattern}" sync="false" conf="@{conf}" />
+
+			<path id="jar.classpath">
+				<fileset dir="${build.lib}" includes="*.jar" />
+				<fileset dir="${build.lib}@{conf}" includes="*.jar" />
+			</path>
+
+			<manifestclasspath jarfile="${build.dir}jar.jar" property="manifest.classpath.@{conf}" maxparentlevels="0">
+				<classpath refid="jar.classpath" />
+			</manifestclasspath>
+
+			<echo message="manifest.classpath.@{conf} [${manifest.classpath.@{conf}}]" />
+			<property name="build.target.name.@{conf}" value="${ant.project.name}-@{suffix}-${ivy.revision}" />
+			<echo message="build.target.name.@{conf} [${build.target.name.@{conf}}]" />
+
+			<property name="build.jar.file.@{conf}" value="${build.dir}${build.target.name.@{conf}}.jar" />
+
+			<jar destfile="${build.jar.file.@{conf}}">
+				<zipfileset dir="${build.main.java}" />
+				<zipfileset dir="${src.main.resources}" prefix="${build.main.resources.prefix}" />
+				<manifest>
+					<attribute name="Main-Class" value="${main.class}" />
+					<attribute name="Class-Path" value="${manifest.classpath.@{conf}}" />
+				</manifest>
+			</jar>
+
+			<filter token="project.build.finalName" value="${build.target.name.@{conf}}" />
+
+			<property name="build.script.@{conf}" value="${build.dir}@{script}" />
+
+			<copy file="@{script}" tofile="${build.script.@{conf}}" filtering="true" overwrite="true" />
+
+			<chmod file="${build.script.@{conf}}" perm="u+x" />
+
+			<zip destfile="${build.dir}/${build.target.name.@{conf}}.zip">
+				<zipfileset dir="${build.lib}/" prefix="${build.target.name.@{conf}}/lib" />
+				<zipfileset file="${build.jar.file.@{conf}}" prefix="${build.target.name.@{conf}}" />
+				<zipfileset file="${build.script.@{conf}}" prefix="${build.target.name.@{conf}}" />
+				<zipfileset dir="${src.externalResources}" prefix="${build.target.name.@{conf}}" />
+			</zip>
+
+			<tar destfile="${build.dir}/${build.target.name.@{conf}}.tar.gz" compression="gzip">
+				<tarfileset dir="${build.lib}/" prefix="${build.target.name.@{conf}}/lib" />
+				<tarfileset file="${build.jar.file.@{conf}}" prefix="${build.target.name.@{conf}}" />
+				<tarfileset file="${build.script.@{conf}}" prefix="${build.target.name.@{conf}}" />
+				<tarfileset dir="${src.externalResources}" prefix="${build.target.name.@{conf}}" />
+			</tar>
+		</sequential>
+	</macrodef>
+
+	<target name="jar-l32" depends="compile">
+		<buildJarAndZip conf="linux_32bit" suffix="linux-gtk-x86" script="run.sh" />
+	</target>
+
+	<target name="jar-l64" depends="compile">
+		<buildJarAndZip conf="linux_64bit" suffix="linux-gtk-x86-64" script="run.sh" />
+	</target>
+
+	<target name="jar-w32" depends="compile">
+		<buildJarAndZip conf="windows_32bit" suffix="win32-x86" script="run.bat" />
+	</target>
+
+	<target name="jar-w64" depends="compile">
+		<buildJarAndZip conf="windows_64bit" suffix="win32-x86-64" script="run.bat" />
+	</target>
+
+	<target name="jar-osx" depends="compile">
+		<buildJarAndZip conf="macosx_carbon" suffix="macosx_carbon" script="run.sh" />
+	</target>
+
+	<target name="dist" depends="jar-l32, jar-l64, jar-w32, jar-w64, jar-osx" />
+
+	<target name="installLibraries">
+		<ivy:configure file="installDepsToIvy.xml" />
+		<ivy:install from="installDirectory" to="local" organisation="com.mckoi.db" module="mckoidb" revision="1.0.3" overwrite="true" />
+		<ivy:install from="installDirectory" to="local" organisation="org.eclipse.swt" module="gtk-linux-x86" revision="3.4.2" overwrite="true" />
+		<ivy:install from="installDirectory" to="local" organisation="org.eclipse.swt" module="gtk-linux-x86_64" revision="3.4.2" overwrite="true" />
+		<ivy:install from="installDirectory" to="local" organisation="org.eclipse.swt" module="win32-x86" revision="3.4.2" overwrite="true" />
+		<ivy:install from="installDirectory" to="local" organisation="org.eclipse.swt" module="win32-x86_64" revision="3.4.2" overwrite="true" />
+		<ivy:install from="installDirectory" to="local" organisation="org.eclipse.swt" module="macosx-carbon" revision="3.4.2" overwrite="true" />
+	</target>
+</project>

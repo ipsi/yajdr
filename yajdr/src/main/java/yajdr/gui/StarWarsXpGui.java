@@ -13,7 +13,6 @@ import yajdr.interfaces.ThreadProgress;
 import yajdr.threads.StarWarsXP;
 import yajdr.util.StringUtil;
 
-
 public class StarWarsXpGui extends JPanel implements ActionListener
 {
 

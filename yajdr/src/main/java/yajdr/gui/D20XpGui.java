@@ -17,7 +17,6 @@ import javax.swing.JTextField;
 import yajdr.threads.D20XP;
 import yajdr.util.StringUtil;
 
-
 /**
  * This is the class that generates the GUI found in the XP Calculator pane of the primary frame.
  * <p>

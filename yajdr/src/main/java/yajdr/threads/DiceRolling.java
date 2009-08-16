@@ -5,7 +5,6 @@ import java.io.Serializable;
 import yajdr.dice.DiceRollInformation;
 import yajdr.interfaces.DiceRollerListener;
 
-
 /**
  * This is the Dice Roller for all World of Darkness systems, and was the first one created for this
  * project.

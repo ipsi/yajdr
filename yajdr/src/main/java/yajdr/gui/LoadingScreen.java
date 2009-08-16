@@ -11,7 +11,6 @@ import javax.swing.JWindow;
 import yajdr.core.DieRollerMain;
 import yajdr.interfaces.ThreadProgress;
 
-
 public class LoadingScreen extends JWindow implements ThreadProgress
 {
 

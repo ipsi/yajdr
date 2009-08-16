@@ -25,7 +25,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.WindowConstants;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import yajdr.core.DieRollerMain;
 import yajdr.dice.DiceRollInformation;
@@ -33,7 +34,6 @@ import yajdr.interfaces.ThreadProgress;
 import yajdr.interfaces.ThreadProgressListener;
 import yajdr.threads.RollDice;
 import yajdr.util.StringUtil;
-
 
 /**
  * <p>
@@ -58,7 +58,7 @@ public class WorldOfDarknessGui extends JPanel implements ActionListener, Thread
 
 	private static final long	serialVersionUID	= 6746653445152761677L;
 
-	private static Logger		logger				= Logger.getLogger(WorldOfDarknessGui.class);
+	private static final Log	log					= LogFactory.getLog(WorldOfDarknessGui.class);
 
 	// ---SPINNERS AND SPINNER MODELS---
 	private SpinnerNumberModel	difficultyModel		= new SpinnerNumberModel(6, 2, 10, 1);
@@ -107,7 +107,7 @@ public class WorldOfDarknessGui extends JPanel implements ActionListener, Thread
 	private JButton				rollInit			= new JButton("Roll Initiative");
 
 	private JButton				viewHist			= new JButton("View Roll History");
-	
+
 	private int					presetdice			= 10;
 
 	// ---CHECKBOXES---
@@ -136,7 +136,7 @@ public class WorldOfDarknessGui extends JPanel implements ActionListener, Thread
 
 	public WorldOfDarknessGui()
 	{
-		logger.trace("Constructing Wod GUI...");
+		log.trace("Constructing Wod GUI...");
 		bells.addActionListener(this);
 		whistle.addActionListener(this);
 		god.addActionListener(this);
@@ -322,7 +322,7 @@ public class WorldOfDarknessGui extends JPanel implements ActionListener, Thread
 				info.setDiceToRoll(Integer.parseInt(actionCommand));
 				numDice.setValue(info.getDiceToRoll());
 			}
-			
+
 			info.setNewThreadSize(Math.max(100, info.getDiceToRoll() / 100));
 
 			new RollDice(this, info).start();
@@ -647,17 +647,16 @@ public class WorldOfDarknessGui extends JPanel implements ActionListener, Thread
 
 
 
-//	public synchronized void rollFinished(String dieResult, int numBotch, int numSuc)
-//	{
-//		this.dieResult += dieResult;
-//		this.numBotch += numBotch;
-//		this.numSuc += numSuc;
-//		finished++;
-//		parent.update(finished, activeThreadCount);
-//		parent.update("Rolling dice... " + ((activeThreadCount * newThread) - (finished * newThread)) + " dice left to go");
-//	}
-
-
+	// public synchronized void rollFinished(String dieResult, int numBotch, int numSuc)
+	// {
+	// this.dieResult += dieResult;
+	// this.numBotch += numBotch;
+	// this.numSuc += numSuc;
+	// finished++;
+	// parent.update(finished, activeThreadCount);
+	// parent.update("Rolling dice... " + ((activeThreadCount * newThread) - (finished * newThread))
+	// + " dice left to go");
+	// }
 
 	public void threadFinished(WorldOfDarknessThreadInformation threadInfo)
 	{

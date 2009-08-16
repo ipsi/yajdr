@@ -23,12 +23,13 @@ import javax.swing.JTextPane;
 import javax.swing.JToolBar;
 import javax.swing.WindowConstants;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class RandomName extends JPanel implements ActionListener
 {
 
-	private static Logger		logger				= Logger.getLogger(RandomName.class);
+	private static final Log	log					= LogFactory.getLog(RandomName.class);
 
 	private static final long	serialVersionUID	= 5177403106252608226L;
 
@@ -42,9 +43,9 @@ public class RandomName extends JPanel implements ActionListener
 
 	private JScrollPane			jsp					= new JScrollPane(output);
 
-	private JTextArea			log					= new JTextArea();
+	private JTextArea			logArea				= new JTextArea();
 
-	private JScrollPane			logPane				= new JScrollPane(log);
+	private JScrollPane			logPane				= new JScrollPane(logArea);
 
 	private JButton				viewLog				= new JButton("View Log");
 
@@ -97,7 +98,7 @@ public class RandomName extends JPanel implements ActionListener
 			Iterator<String> i = logSet.iterator();
 			while (i.hasNext())
 			{
-				log.append(i.next());
+				logArea.append(i.next());
 			}
 			jf.getContentPane().add(logPane, BorderLayout.CENTER);
 			toolbar.add(save);
@@ -124,7 +125,7 @@ public class RandomName extends JPanel implements ActionListener
 			}
 			catch (IOException e)
 			{
-				logger.error("Error saving random names list...", e);
+				log.error("Error saving random names list...", e);
 			}
 		}
 	}

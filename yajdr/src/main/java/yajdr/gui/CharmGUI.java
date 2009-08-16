@@ -38,7 +38,6 @@ import yajdr.gui.print.PrintCharm;
 
 import com.mckoi.jfccontrols.ResultSetTableModel;
 
-
 public class CharmGUI extends JPanel implements ActionListener
 {
 
@@ -516,7 +515,7 @@ public class CharmGUI extends JPanel implements ActionListener
 		if (rows == null || rows.length == 0)
 		{
 			logger.debug("rows == null: " + (rows == null));
-			if(rows != null)
+			if (rows != null)
 				logger.debug("rows.lengh == 0: " + (rows.length == 0));
 			return;
 		}
@@ -541,8 +540,8 @@ public class CharmGUI extends JPanel implements ActionListener
 	private class SelectRowTableModel extends ResultSetTableModel
 	{
 
-		private Logger logger = Logger.getLogger(SelectRowTableModel.class);
-		
+		private Logger				logger				= Logger.getLogger(SelectRowTableModel.class);
+
 		private static final long	serialVersionUID	= -8688977238130301144L;
 
 		private ResultSet			rs;

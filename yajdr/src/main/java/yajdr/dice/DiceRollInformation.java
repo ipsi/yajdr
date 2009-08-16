@@ -152,7 +152,8 @@ public class DiceRollInformation implements Cloneable
 
 
 	/**
-	 * @param newThreadSize the newThreadSize to set
+	 * @param newThreadSize
+	 *            the newThreadSize to set
 	 */
 	public void setNewThreadSize(int newThreadSize)
 	{

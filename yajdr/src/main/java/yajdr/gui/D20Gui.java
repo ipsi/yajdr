@@ -20,7 +20,6 @@ import javax.swing.SpinnerNumberModel;
 import yajdr.interfaces.ThreadProgress;
 import yajdr.threads.D20DiceRolling;
 
-
 /**
  * This is the GUI for the d20 Dice Roller.
  * <p>

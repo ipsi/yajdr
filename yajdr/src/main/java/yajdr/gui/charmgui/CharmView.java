@@ -19,7 +19,6 @@ import javax.swing.WindowConstants;
 import yajdr.core.DieRollerMain;
 import yajdr.gui.charmtree.Charm;
 
-
 /**
  * This class creates a pop-up window for a charm. Currently, it requires that a table and row
  * number are passed to the constructor, which is the only method present in this class. The frame
