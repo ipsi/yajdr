@@ -25,29 +25,15 @@
         revision="0.0.2"
         status="integration">
 	</info>
-	
+
 	<configurations>
 		<conf name="compile" description="This is the set of JARs necessary to compile the application (*excluding* OS-specific dependencies, such as SWT)" visibility="private" />
-		<conf name="linux_32bit" description="Includes the dependencies necessary for 32bit Linux" />
-		<conf name="linux_64bit" description="Includes the dependencies necessary for 64bit Linux" />
-		<conf name="windows_32bit" description="Includes the dependencies necessary for 32bit Windows" />
-		<conf name="windows_64bit" description="Includes the dependencies necessary for 64bit Windows" />
-		<conf name="macosx_carbon" description="Includes the dependencies necessary for Mac OS X (with Carbon GUI)" />
 	</configurations>
 	
 	<dependencies>
-		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.8.0" conf="compile->default"  />
-		<dependency org="commons-logging" name="commons-logging" rev="1.1.1" conf="compile->default" />
-		<dependency org="log4j" name="log4j" rev="1.2.15" conf="compile->default" />
-		<dependency org="com.mckoi.db" name="mckoidb" rev="1.0.3" conf="compile->default" />
-		<dependency org="org.eclipse.swt" name="gtk-linux-x86" rev="3.4.2" conf="linux_32bit->default" />
-		<dependency org="org.eclipse.swt" name="gtk-linux-x86_64" rev="3.4.2" conf="linux_64bit->default" />
-		<dependency org="org.eclipse.swt" name="win32-x86" rev="3.4.2" conf="windows_32bit->default" />
-		<dependency org="org.eclipse.swt" name="win32-x86_64" rev="3.4.2" conf="windows_64bit->default" />
-		<dependency org="org.eclipse.swt" name="macosx-carbon" rev="3.4.2" conf="macosx_carbon->default" />
-		<exclude module="jms" />
-		<exclude module="jmxtools" />
-		<exclude module="jmxri" />
+		<dependency org="commons-beanutils" name="commons-beanutils" rev="1.8.1" conf="compile->default,master,runtime"  />
+		<dependency org="commons-logging" name="commons-logging" rev="1.1.1" conf="compile->default,master,runtime" />
+		<dependency org="log4j" name="log4j" rev="1.2.15" conf="compile->default,master,runtime" transitive="false" />
 	</dependencies>
 	
 </ivy-module>
