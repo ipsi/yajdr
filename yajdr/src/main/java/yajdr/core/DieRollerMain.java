@@ -5,7 +5,6 @@ import java.awt.Point;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
-import javax.swing.UIManager;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -39,16 +38,7 @@ public class DieRollerMain
 	 */
 	public static void main(String[] args)
 	{
-		try
-		{
-			UIManager.setLookAndFeel("com.jgoodies.plaf.windows.ExtWindowsLookAndFeel");
-			// UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-		}
-		catch (Exception e)
-		{
-			log.debug("Caught an exception trying to load the L&F...", e);
-		}
-
+		log.info("Loading Main Screen");
 		LoadingScreen ls = new LoadingScreen();
 		final DieRoller dr = new DieRoller(ls);
 		dr.pack();
@@ -56,30 +46,6 @@ public class DieRollerMain
 		dr.setTitle("Storyteller System Dice Roller");
 		dr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ls.setVisible(false);
-		// log.trace("Loading display...");
-		// Display disp = Display.getDefault();
-		// Shell shell = new Shell(disp, SWT.SHELL_TRIM);
-		//
-		// GridLayout layout = new GridLayout();
-		// layout.numColumns = 2;
-		// layout.makeColumnsEqualWidth = true;
-		// shell.setLayout(layout);
-		//
-		// Label label = new Label(shell, SWT.HORIZONTAL | SWT.SHADOW_NONE | SWT.LEAD);
-		// label.setText("This is a label.");
-		//
-		// GridData data = new GridData(GridData.FILL_BOTH);
-		// label.setLayoutData(data);
-		//
-		// shell.pack();
-		// shell.open();
-		//
-		// while (!shell.isDisposed())
-		// {
-		// if (!disp.readAndDispatch())
-		// disp.sleep();
-		// }
-		// disp.dispose();
 	}
 
 

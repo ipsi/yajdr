@@ -22,7 +22,6 @@ import javax.swing.event.ChangeListener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import yajdr.gui.CharmGUI;
 import yajdr.gui.D20Gui;
 import yajdr.gui.D20XpGui;
 import yajdr.gui.LoadingScreen;
@@ -171,11 +170,6 @@ public class DieRoller extends JFrame implements ActionListener, ChangeListener,
 
 		updateLoader(++panelsDone, numberPanels, "gameNotes initialised", loadingScreen);
 
-		// Creaing and adding CharmGUI
-		CharmGUI cgui = new CharmGUI();
-
-		updateLoader(++panelsDone, numberPanels, "CharmGUI initialsed", loadingScreen);
-
 		// Creaing and adding RandomName
 		RandomName rn = new RandomName();
 
@@ -186,7 +180,6 @@ public class DieRoller extends JFrame implements ActionListener, ChangeListener,
 		gameLine.addTab("D20", null, d20TabPane, "Includes Die Roller and XP calculator");
 		gameLine.addTab("Shadowrun", null, sg, "Dice Roller for SR system");
 		gameLine.addTab("Notes", null, gn, "Facility for taking notes");
-		gameLine.addTab("Exlated Charms DB", null, cgui, "Searchable Database containg all charms for Exalted");
 		gameLine.addTab("Random Name Generator", null, rn, "Generates random fantasy-ish names");
 
 		updateLoader(++panelsDone, numberPanels, "tabbed pane initialised", loadingScreen);
@@ -258,33 +251,18 @@ public class DieRoller extends JFrame implements ActionListener, ChangeListener,
 		}
 
 		else if (buttonPressed == exit)
-		{
 			System.exit(0);
-		}
-
 		else if (buttonPressed == helpMI)
-		{
 			Help();
-		}
-
 		else if (buttonPressed == about)
-		{
 			JOptionPane.showMessageDialog(null, "This contains a variety of stuff - most of it should be fairly obvious" + " but if it's not, I'm contactable at ipsi@paradise.net.nz\n" + "Also, the actual page for this is at http://homepages.paradise.net.nz/ipsi\n" + "Nothing more to say. All useful info is on the website.", "About Die Roller", JOptionPane.INFORMATION_MESSAGE);
-		}
 	}
 
 
 
 	public void stateChanged(ChangeEvent ce)
 	{
-		if (gameLine.getSelectedComponent() instanceof CharmGUI)
-		{
-			update("Charm Count: " + ((CharmGUI) gameLine.getSelectedComponent()).getRowCount());
-		}
-		else
-		{
-			update("Ready");
-		}
+		update("Ready");
 	}
 
 
