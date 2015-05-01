@@ -1,0 +1,1 @@
+A fairly simple project that basically just simulates the rolling of dice for various roleplaying games. May be extended to include other aspects of roleplaying games (e.g. charms for Exalted, remote communication between instances, etc).
