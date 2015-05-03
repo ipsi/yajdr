@@ -23,6 +23,13 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
+tasks.withType(Tar){
+    compression = Compression.GZIP
+}
+
+group = 'nz.net.ipsi'
+version = '1.0.0'
+
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
