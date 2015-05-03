@@ -1,15 +1,16 @@
 package yajdr.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import org.apache.log4j.Logger;
-
 public final class ResourceUtil
 {
-	private static final Logger	logger	= Logger.getLogger(ResourceUtil.class);
+	private static final Logger logger	= LoggerFactory.getLogger(ResourceUtil.class);
 
 
 

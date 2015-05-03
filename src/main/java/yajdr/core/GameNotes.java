@@ -1,5 +1,8 @@
 package yajdr.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -27,8 +30,6 @@ import javax.swing.JToolBar;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import org.apache.log4j.Logger;
-
 /**
  * This class is designed to allow someone to make notes for their game, and then save said notes as
  * a file. While easily accomplished, it would be nice to be able to easily serialize this object.
@@ -43,7 +44,7 @@ import org.apache.log4j.Logger;
 
 public class GameNotes extends JPanel implements ActionListener, DocumentListener
 {
-	private static final Logger	logger				= Logger.getLogger(GameNotes.class);
+	private static final Logger logger				= LoggerFactory.getLogger(GameNotes.class);
 
 	private static final long	serialVersionUID	= 9034263348124531749L;
 

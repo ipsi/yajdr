@@ -1,9 +1,10 @@
 package yajdr.dice;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class DiceRollInformation implements Cloneable
 {
@@ -14,7 +15,7 @@ public class DiceRollInformation implements Cloneable
 	private boolean	rerollTens		= false;
 	private boolean	tensCountTwice	= false;
 
-	private Logger	logger			= Logger.getLogger(DiceRollInformation.class);
+	private Logger logger			= LoggerFactory.getLogger(DiceRollInformation.class);
 
 
 
