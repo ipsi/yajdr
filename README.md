@@ -1,0 +1,1 @@
+Old-school Java dice-roller (plus a few other things) that I wrote many, many years ago. Uses `swing` (poorly).
