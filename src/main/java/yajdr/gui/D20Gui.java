@@ -58,9 +58,30 @@ public class D20Gui extends JPanel implements ActionListener
 
 	private JButton				d20RollDice			= new JButton("Roll Dice");
 
-	private JButton[]			diceSizeArray		= { new JButton("Roll d2"), new JButton("Roll d3"), new JButton(new ImageIcon("Images" + File.separator + "dice_4_1.png")), new JButton(new ImageIcon("Images" + File.separator + "dice_6_1.png")), new JButton(new ImageIcon("Images" + File.separator + "dice_8_1.png")), new JButton(new ImageIcon("Images" + File.separator + "dice_10_1.png")), new JButton(new ImageIcon("Images" + File.separator + "dice_12_1.png")), new JButton(new ImageIcon("Images" + File.separator + "dice_20_1.png")), new JButton("Roll d%") };
+	private JButton[]			diceSizeArray		= {
+			new JButton("Roll d2"),
+			new JButton("Roll d3"),
+			new JButton(new ImageIcon(getClass().getResource("/Images/dice_4_1.png"))),
+			new JButton(new ImageIcon(getClass().getResource("/Images/dice_6_1.png"))),
+			new JButton(new ImageIcon(getClass().getResource("/Images/dice_8_1.png"))),
+			new JButton(new ImageIcon(getClass().getResource("/Images/dice_10_1.png"))),
+			new JButton(new ImageIcon(getClass().getResource("/Images/dice_12_1.png"))),
+			new JButton(new ImageIcon(getClass().getResource("/Images/dice_20_1.png"))),
+			new JButton("Roll d%")
+	};
 
-	private JButton[]			d20PresetDiceArray	= { new JButton("Roll 1 die"), new JButton("Roll 2 dice"), new JButton("Roll 3 dice"), new JButton("Roll 4 dice"), new JButton("Roll 5 dice"), new JButton("Roll 6 dice"), new JButton("Roll 7 dice"), new JButton("Roll 8 dice"), new JButton("Roll 9 dice"), new JButton("Roll 10 dice") };
+	private JButton[]			d20PresetDiceArray	= {
+			new JButton("Roll 1 die"),
+			new JButton("Roll 2 dice"),
+			new JButton("Roll 3 dice"),
+			new JButton("Roll 4 dice"),
+			new JButton("Roll 5 dice"),
+			new JButton("Roll 6 dice"),
+			new JButton("Roll 7 dice"),
+			new JButton("Roll 8 dice"),
+			new JButton("Roll 9 dice"),
+			new JButton("Roll 10 dice")
+	};
 
 	private JScrollPane			d20ScrollPane		= new JScrollPane(d20Output);
 
@@ -179,7 +200,7 @@ public class D20Gui extends JPanel implements ActionListener
 			{
 				if (buttonPressed == d20PresetDiceArray[i])
 				{
-					numDice.setValue(new Integer(i + 1));
+					numDice.setValue(i + 1);
 					d20RollDice();
 				}
 			}
@@ -205,8 +226,8 @@ public class D20Gui extends JPanel implements ActionListener
 		d20DiceSum = 0;
 		dieResultStr = "";
 
-		int dS = ((Integer) diceSize.getValue()).intValue();
-		int numD = ((Integer) numDice.getValue()).intValue();
+		int dS = (Integer) diceSize.getValue();
+		int numD = (Integer) numDice.getValue();
 		numAdd = Integer.parseInt(numAddStr);
 
 		d20finished = 0;
@@ -264,47 +285,47 @@ public class D20Gui extends JPanel implements ActionListener
 	{
 		if (i == 0)
 		{
-			diceSize.setValue(new Integer(2));
+			diceSize.setValue(2);
 			d20RollDice();
 		}
 		else if (i == 1)
 		{
-			diceSize.setValue(new Integer(3));
+			diceSize.setValue(3);
 			d20RollDice();
 		}
 		else if (i == 2)
 		{
-			diceSize.setValue(new Integer(4));
+			diceSize.setValue(4);
 			d20RollDice();
 		}
 		else if (i == 3)
 		{
-			diceSize.setValue(new Integer(6));
+			diceSize.setValue(6);
 			d20RollDice();
 		}
 		else if (i == 4)
 		{
-			diceSize.setValue(new Integer(8));
+			diceSize.setValue(8);
 			d20RollDice();
 		}
 		else if (i == 5)
 		{
-			diceSize.setValue(new Integer(10));
+			diceSize.setValue(10);
 			d20RollDice();
 		}
 		else if (i == 6)
 		{
-			diceSize.setValue(new Integer(12));
+			diceSize.setValue(12);
 			d20RollDice();
 		}
 		else if (i == 7)
 		{
-			diceSize.setValue(new Integer(20));
+			diceSize.setValue(20);
 			d20RollDice();
 		}
 		else if (i == 8)
 		{
-			diceSize.setValue(new Integer(100));
+			diceSize.setValue(100);
 			d20RollDice();
 		}
 	}

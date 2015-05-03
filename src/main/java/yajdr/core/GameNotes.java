@@ -52,13 +52,13 @@ public class GameNotes extends JPanel implements ActionListener, DocumentListene
 
 	private JScrollPane			notesPane			= new JScrollPane(notes);
 
-	private JButton				save				= new JButton(new ImageIcon("Images" + File.separator + "save16_d.gif"));
+	private JButton				save				= new JButton(new ImageIcon(getClass().getResource("/Images/save16_d.gif")));
 
-	private JButton				load				= new JButton(new ImageIcon("Images" + File.separator + "open_document16.gif"));
+	private JButton				load				= new JButton(new ImageIcon(getClass().getResource("/Images/open_document16.gif")));
 
-	private JButton				newDocument			= new JButton(new ImageIcon("Images" + File.separator + "new_document16.gif"));
+	private JButton				newDocument			= new JButton(new ImageIcon(getClass().getResource("/Images/new_document16.gif")));
 
-	private JButton				saveAs				= new JButton(new ImageIcon("Images" + File.separator + "save_green16_h.gif"));
+	private JButton				saveAs				= new JButton(new ImageIcon(getClass().getResource("/Images/save_green16_h.gif")));
 
 	private JButton				autoLoad			= new JButton("File to load on start");
 
