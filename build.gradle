@@ -23,12 +23,7 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
-task externalResources {
-    outputs.dir file("$buildDir/externalResources")
-}
-
-applicationDistribution.from(externalResources) {
-    into "."
-}
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 mainClassName = 'yajdr.core.DieRollerMain'
