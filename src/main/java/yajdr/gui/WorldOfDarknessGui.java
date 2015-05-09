@@ -329,7 +329,7 @@ public class WorldOfDarknessGui extends JPanel implements ActionListener, Thread
 		}
 		else if (buttonPressed == reset)
 		{
-			Reset();
+			reset();
 			numDice.requestFocus();
 		}
 		else if (buttonPressed == resetWOD)
@@ -340,9 +340,9 @@ public class WorldOfDarknessGui extends JPanel implements ActionListener, Thread
 		else if (buttonPressed == rollInit)
 		{
 			String initStr = init.getText();
-			if (IsInteger(initStr))
+			if (isInteger(initStr))
 			{
-				RollInit(initStr);
+				rollInit(initStr);
 			}
 		}
 		else if (buttonPressed == bells)
@@ -453,7 +453,7 @@ public class WorldOfDarknessGui extends JPanel implements ActionListener, Thread
 
 
 
-	private boolean IsInteger(String inputTest)
+	private boolean isInteger(String inputTest)
 	{
 		if (StringUtil.isInteger(inputTest))
 			return true;
@@ -464,7 +464,7 @@ public class WorldOfDarknessGui extends JPanel implements ActionListener, Thread
 
 
 
-	private void Reset()
+	private void reset()
 	{
 		output.setText("");
 		successOutput.setText("");
@@ -482,7 +482,7 @@ public class WorldOfDarknessGui extends JPanel implements ActionListener, Thread
 
 
 
-	private void RollInit(String initStr)
+	private void rollInit(String initStr)
 	{
 		double dieRoll = Math.floor(((Math.random()) * 10) + 1);
 		initOutput.setText("Initiative: " + (int) (dieRoll + Integer.parseInt(initStr)));

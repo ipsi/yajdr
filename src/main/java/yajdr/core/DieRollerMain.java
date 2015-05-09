@@ -1,15 +1,11 @@
 package yajdr.core;
 
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import yajdr.gui.LoadingScreen;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * This is the class that contains the main method for this application. Also, as of 9.42pm,
@@ -44,7 +40,7 @@ public class DieRollerMain
 		dr.pack();
 		dr.setVisible(true);
 		dr.setTitle("Storyteller System Dice Roller");
-		dr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		dr.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		ls.setVisible(false);
 	}
 

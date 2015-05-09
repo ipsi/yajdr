@@ -1,24 +1,12 @@
 package yajdr.gui;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
-
 import yajdr.interfaces.ThreadProgress;
 import yajdr.threads.D20DiceRolling;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * This is the GUI for the d20 Dice Roller.
@@ -28,7 +16,7 @@ import yajdr.threads.D20DiceRolling;
  * 
  * @author Andrew Thorburn
  * @version 6.0
- * @todo Add methods to change and return the <code>newThread</code> data field.
+ * @todo Add methods to change and return the <code>NEW_THREAD</code> data field.
  */
 
 public class D20Gui extends JPanel implements ActionListener
@@ -97,7 +85,7 @@ public class D20Gui extends JPanel implements ActionListener
 	 * This is the field that stores the number of dice that should be assigned to each thread.
 	 * There are no ways to modify this number at current, but they may be implemented later.
 	 */
-	private int					newThread			= 2000;
+	private static final int	NEW_THREAD = 2000;
 
 
 
@@ -232,24 +220,24 @@ public class D20Gui extends JPanel implements ActionListener
 
 		d20finished = 0;
 
-		if ((numD % newThread) == 0)
+		if ((numD % NEW_THREAD) == 0)
 		{
-			d20Array = new D20DiceRolling[(numD / newThread)];
+			d20Array = new D20DiceRolling[(numD / NEW_THREAD)];
 		}
-		else if (numD < newThread)
+		else if (numD < NEW_THREAD)
 		{
 			d20Array = new D20DiceRolling[1];
 		}
 		else
 		{
-			d20Array = new D20DiceRolling[(numD / newThread) + 1];
+			d20Array = new D20DiceRolling[(numD / NEW_THREAD) + 1];
 		}
 
 		for (int i = 0; i < d20Array.length; i++)
 		{
-			if ((numD - newThread) > 0)
+			if ((numD - NEW_THREAD) > 0)
 			{
-				numD -= newThread;
+				numD -= NEW_THREAD;
 				d20Array[i] = new D20DiceRolling(this, numD, dS);
 				d20Array[i].start();
 			}
